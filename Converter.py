@@ -7,7 +7,7 @@ df = pd.read_csv('HVAC_Dynamic_Fuzzy_PID_2017_with_Target.csv')
 
 # Kolumny do pominięcia
 
-columns_to_remove = ['Timestamp','HVAC_Efficiency_Class','ISA_Optimization_Score','User_Comfort_Index','Energy_Efficiency_%','Response_Time_s','HVAC_Power_Consumption_kWh','Fuzzy_Adjustment_Factor','Cooling_Heating_Output_C']
+columns_to_remove = ['Timestamp','HVAC_Efficiency_Class','ISA_Optimization_Score','User_Comfort_Index','Energy_Efficiency_%','Response_Time_s','HVAC_Power_Consumption_kWh','Kp','Ki','Kd']
 
 
 # Usuń niepotrzebne kolumny
