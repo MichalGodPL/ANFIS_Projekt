@@ -5,7 +5,7 @@ import pandas as pd
 df = pd.read_csv('WineQT.csv')
 
 
-# Kolumny do zachowania
+# Kolumny do zachowania (quality MUSI być ostatnie jako OUTPUT)
 
 columns_to_keep = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'total sulfur dioxide', 'quality']
 
@@ -15,14 +15,15 @@ columns_to_keep = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 't
 df_filtered = df[columns_to_keep]
 
 
-# Zapisz do pliku TXT bez nagłówków
+# Zapisz do pliku .dat z tabulacją jako separator (MATLAB preferuje TAB)
 
-df_filtered.to_csv('PlikWynikowy.txt', sep=' ', index=False, header=False)
-
-# Zapisz też do pliku .dat
-df_filtered.to_csv('DatWynik.dat', sep=' ', index=False, header=False)
+df_filtered.to_csv('DatWynik.dat', sep='\t', index=False, header=False, float_format='%.6f')
 
 
-print(f"Pliki zostały utworzone! Liczba wierszy: {len(df_filtered)}")
+print(f"Plik został utworzony! Liczba wierszy: {len(df_filtered)}")
 
 print(f"Zachowane kolumny: {list(df_filtered.columns)}")
+
+print(f"Ostatnia kolumna (OUTPUT dla ANFIS): {df_filtered.columns[-1]}")
+
+print(f"\nUżyto separatora: TAB")
