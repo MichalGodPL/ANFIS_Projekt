@@ -7,7 +7,7 @@ column_names = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'qual
 
 # Wczytaj dane z pliku (bez nagłówków)
 
-df = pd.read_csv('DatWynik.dat', sep='\t', header=None, names=column_names)
+df = pd.read_csv('GotowyDatWynik.dat', sep='\t', header=None, names=column_names)
 
 
 # Wypisz zakresy dla każdej zmiennej
