@@ -2,17 +2,17 @@ import pandas as pd
 
 # Wczytaj plik CSV
 
-df = pd.read_csv('HVAC_Dynamic_Fuzzy_PID_2017_with_Target.csv')
+df = pd.read_csv('WineQT.csv')
 
 
-# Kolumny do pominięcia
+# Kolumny do zachowania
 
-columns_to_remove = ['Timestamp','CO2_ppm','Kp','Ki','Kd','ISA_Optimization_Score','HVAC_Power_Consumption_kWh','Cooling_Heating_Output_C','Response_Time_s','Energy_Efficiency_%','User_Comfort_Index','HVAC_Efficiency_Class']
+columns_to_keep = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'total sulfur dioxide', 'quality']
 
 
-# Usuń niepotrzebne kolumny
+# Zachowaj tylko wybrane kolumny
 
-df_filtered = df.drop(columns=columns_to_remove)
+df_filtered = df[columns_to_keep]
 
 
 # Zapisz do pliku TXT bez nagłówków

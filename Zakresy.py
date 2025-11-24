@@ -2,7 +2,7 @@ import pandas as pd
 
 # Nazwy kolumn które zostały zachowane w PlikWynikowy.txt
 
-column_names = ['Temperature_C', 'Humidity_%', 'Occupancy_Count', 'External_Temperature_C', 'Fuzzy_Adjustment_Factor']
+column_names = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'total sulfur dioxide', 'quality']
 
 
 # Wczytaj dane z pliku (bez nagłówków)

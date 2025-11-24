@@ -2,37 +2,30 @@ import pandas as pd
 
 # Wczytaj plik CSV
 
-df = pd.read_csv('HVAC_Dynamic_Fuzzy_PID_2017_with_Target.csv')
+df = pd.read_csv('WineQT.csv')
 
 
-# Kolumny do analizy korelacji z Fuzzy_Adjustment_Factor
+# Usuń kolumnę Id
 
-columns_for_fuzzy = ['Temperature_C', 'Humidity_%','Occupancy_Count', 'External_Temperature_C', 'Cooling_Heating_Output_C']
+df = df.drop(columns=['Id'])
 
-# Kolumny do analizy korelacji z Cooling_Heating_Output_C
+# Oblicz korelację wszystkich kolumn z quality
 
-columns_for_cooling = ['Temperature_C', 'Humidity_%', 'Occupancy_Count', 'External_Temperature_C', 'Fuzzy_Adjustment_Factor']
+print("=== KORELACJE Z QUALITY ===\n")
 
+correlations = df.corr()['quality'].sort_values(ascending=False)
 
-# Korelacja z Fuzzy_Adjustment_Factor
+print(correlations)
 
-print("Korelacja z Fuzzy_Adjustment_Factor:\n")
-
-for column in columns_for_fuzzy:
-
-    correlation = df[column].corr(df['Fuzzy_Adjustment_Factor'])
-
-    print(f"{column}: {correlation:.6f}")
-
-print("\n" + "="*50 + "\n")
+print("\n" + "="*60 + "\n")
 
 
-# Korelacja z Cooling_Heating_Output_C
+# Wyświetl szczegółowo (z formatowaniem)
 
-print("Korelacja z Cooling_Heating_Output_C:\n")
+print("Szczegółowe korelacje:\n")
 
-for column in columns_for_cooling:
+for column, corr_value in correlations.items():
 
-    correlation = df[column].corr(df['Cooling_Heating_Output_C'])
+    if column != 'quality':
 
-    print(f"{column}: {correlation:.6f}")
+        print(f"{column:30s}: {corr_value:8.6f}")
