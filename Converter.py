@@ -19,7 +19,10 @@ df_filtered = df[columns_to_keep]
 
 df_filtered.to_csv('PlikWynikowy.txt', sep=' ', index=False, header=False)
 
+# Zapisz też do pliku .dat
+df_filtered.to_csv('DatWynik.dat', sep=' ', index=False, header=False)
 
-print(f"Plik został utworzony! Liczba wierszy: {len(df_filtered)}")
+
+print(f"Pliki zostały utworzone! Liczba wierszy: {len(df_filtered)}")
 
 print(f"Zachowane kolumny: {list(df_filtered.columns)}")
