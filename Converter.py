@@ -7,7 +7,7 @@ df = pd.read_csv('WineQT.csv')
 
 # Kolumny do zachowania (quality MUSI być ostatnie jako OUTPUT)
 
-columns_to_keep = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'density', 'quality']
+columns_to_keep = ['alcohol', 'volatile acidity', 'sulphates', 'citric acid', 'quality']
 
 
 # Zachowaj tylko wybrane kolumny
