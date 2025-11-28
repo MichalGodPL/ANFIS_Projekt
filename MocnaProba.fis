@@ -12,39 +12,39 @@ AggMethod='sum'
 DefuzzMethod='wtaver'
 
 [Input1]
-Name='input1'
+Name='Alcohol'
 Range=[8.002577 14.9]
 NumMFs=3
-MF1='in1mf1':'gaussmf',[1.51196913885257 8.03024336515668]
-MF2='in1mf2':'gaussmf',[1.55073178727097 11.4621604533838]
-MF3='in1mf3':'gaussmf',[1.77101685997311 14.7305474004174]
+MF1='Lekkie':'gaussmf',[1.51196913885257 8.03024336515668]
+MF2='Srednie':'gaussmf',[1.55073178727097 11.4621604533838]
+MF3='Mocne':'gaussmf',[1.77101685997311 14.7305474004174]
 
 [Input2]
-Name='input2'
+Name='Kwasowosc_Lotna'
 Range=[0.12 1.59379]
 NumMFs=3
-MF1='in2mf1':'gaussmf',[0.329501071684475 0.26535520495634]
-MF2='in2mf2':'gaussmf',[0.449962967124094 0.890382993118814]
-MF3='in2mf3':'gaussmf',[0.31623367404608 1.38605843124211]
+MF1='Optymalna':'gaussmf',[0.329501071684475 0.26535520495634]
+MF2='Podwyzszona':'gaussmf',[0.449962967124094 0.890382993118814]
+MF3='Wadliwa':'gaussmf',[0.31623367404608 1.38605843124211]
 
 [Input3]
-Name='input3'
+Name='Siarczany'
 Range=[0.304792 2]
 NumMFs=3
-MF1='in3mf1':'gaussmf',[0.252177645311563 0.24863198108779]
-MF2='in3mf2':'gaussmf',[0.414648825043191 1.10244639693639]
-MF3='in3mf3':'gaussmf',[0.500810921803097 1.84041456597974]
+MF1='Minimalne':'gaussmf',[0.252177645311563 0.24863198108779]
+MF2='Standardowe':'gaussmf',[0.414648825043191 1.10244639693639]
+MF3='Wzmocnione':'gaussmf',[0.500810921803097 1.84041456597974]
 
 [Input4]
-Name='input4'
+Name='Kwas_Cytrynowy'
 Range=[0 1]
 NumMFs=3
-MF1='in4mf1':'gaussmf',[0.0850586833846359 -0.0521113624495578]
-MF2='in4mf2':'gaussmf',[0.101787368221833 0.335191945911254]
-MF3='in4mf3':'gaussmf',[0.187421794777936 0.693774395931509]
+MF1='Niski':'gaussmf',[0.0850586833846359 -0.0521113624495578]
+MF2='Zrownowazony':'gaussmf',[0.101787368221833 0.335191945911254]
+MF3='Wyrazisty':'gaussmf',[0.187421794777936 0.693774395931509]
 
 [Output1]
-Name='output'
+Name='Jakosc'
 Range=[1 10]
 NumMFs=81
 MF1='out1mf1':'constant',[13.0923551432343]
