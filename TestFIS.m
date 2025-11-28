@@ -7,7 +7,7 @@ fis = readfis('MocnaProba.fis');
 
 disp('===================================');
 
-disp('INFORMACJE O SYSTEMIE FIS');
+disp('WIZUALIZACJA SYSTEMU FIS');
 
 disp('===================================');
 
@@ -15,11 +15,13 @@ disp(['Liczba wejść: ', num2str(length(fis.Inputs))]);
 
 for i = 1:length(fis.Inputs)
 
-    disp(['  Wejście ', num2str(i), ': ', fis.Inputs(i).Name]);
+    disp('  Wejście ' + string(i) + ': ' + string(fis.Inputs(i).Name));
 
 end
 
 disp(['Liczba wyjść: ', num2str(length(fis.Outputs))]);
+
+disp(['Wyjście: ', fis.Outputs(1).Name]);
 
 disp(['Liczba reguł: ', num2str(length(fis.Rules))]);
 
@@ -39,6 +41,14 @@ showrule(fis);
 
 % Wizualizacja funkcji przynależności dla wszystkich wejść
 
+disp(' ');
+
+disp('===================================');
+
+disp('WIZUALIZACJA FUNKCJI PRZYNALEŻNOŚCI');
+
+disp('===================================');
+
 figure('Name', 'Funkcje przynależności wejść', 'Position', [100 100 1200 800]);
 
 for i = 1:length(fis.Inputs)
@@ -56,6 +66,14 @@ end
 
 % Generuj powierzchnie 3D dla różnych par wejść
 
+disp(' ');
+
+disp('===================================');
+
+disp('WIZUALIZACJA POWIERZCHNI 3D');
+
+disp('===================================');
+
 num_inputs = length(fis.Inputs);
 
 input_names = cell(1, num_inputs);
@@ -65,11 +83,6 @@ for i = 1:num_inputs
     input_names{i} = fis.Inputs(i).Name;
 
 end
-
-
-% Wczytaj dane do określenia zakresów
-
-data = readmatrix('GotowyDatWynik.dat', 'FileType', 'text');
 
 
 % Powierzchnie 3D - wszystkie kombinacje par wejść
@@ -94,10 +107,7 @@ for i = 1:num_inputs-1
 
         ylabel(input_names{j});
 
-        zlabel('Quality');
-
-        % zlim([1 10]);  % Ustaw zakres osi Z od 1 do 10
-
+        zlabel(fis.Outputs(1).Name);
 
         colorbar;
 
@@ -106,152 +116,24 @@ for i = 1:num_inputs-1
         view(45, 30);
 
         rotate3d on;  % Włącz swobodną rotację 3D
+        
+        disp('  Wygenerowano powierzchnię ' + string(pair_count) + ': ' + string(input_names{i}) + ' vs ' + string(input_names{j}));
 
     end
 
 end
 
 
-% Testuj system na danych treningowych
-
 disp(' ');
 
 disp('===================================');
 
-disp('TESTOWANIE SYSTEMU FIS');
+disp('WIZUALIZACJA ZAKOŃCZONA');
 
 disp('===================================');
 
+disp('Liczba funkcji przynależności: 1 wykres');
 
-inputs = data(:, 1:end-1);
+disp('Liczba powierzchni 3D: ' + string(pair_count) + ' wykresów');
 
-expected_output = data(:, end);
-
-predicted_output = zeros(size(expected_output));
-
-
-for i = 1:size(inputs, 1)
-
-    raw_output = evalfis(fis, inputs(i, :));
-
-    % Ograniczenie do zakresu 1-10
-
-    predicted_output(i) = min(max(raw_output, 1), 10);
-
-end
-
-
-% Oblicz błędy
-
-errors = predicted_output - expected_output;
-
-mae = mean(abs(errors));
-
-rmse = sqrt(mean(errors.^2));
-
-
-disp(['Liczba testowanych próbek: ', num2str(length(predicted_output))]);
-
-disp(['MAE (Mean Absolute Error): ', num2str(mae)]);
-
-disp(['RMSE (Root Mean Square Error): ', num2str(rmse)]);
-
-
-% Wyświetl przykładowe predykcje
-
-disp(' ');
-
-disp('Przykładowe predykcje (pierwsze 10):');
-
-disp('Oczekiwane | Predykcja | Błąd');
-
-disp('-----------|-----------|------');
-
-for i = 1:min(10, length(predicted_output))
-
-    fprintf('%10.2f | %9.2f | %5.2f\n', expected_output(i), predicted_output(i), errors(i));
-
-end
-
-
-% Wizualizacja porównania predykcji
-
-figure('Name', 'Porównanie predykcji', 'Position', [100 100 1200 600]);
-
-subplot(2,2,1);
-
-plot(expected_output, 'b-', 'LineWidth', 1.5);
-
-hold on;
-
-plot(predicted_output, 'r--', 'LineWidth', 1.5);
-
-hold off;
-
-legend('Oczekiwane', 'Predykcja');
-
-xlabel('Numer próbki');
-
-ylabel('Quality');
-
-title('Porównanie wartości oczekiwanych i predykcji');
-
-grid on;
-
-
-subplot(2,2,2);
-
-histogram(errors, 30);
-
-xlabel('Błąd predykcji');
-
-ylabel('Liczba próbek');
-
-title(['Rozkład błędów (MAE: ', num2str(mae, '%.4f'), ')']);
-
-grid on;
-
-
-subplot(2,2,3);
-
-scatter(expected_output, predicted_output, 20, 'filled', 'MarkerFaceAlpha', 0.6);
-
-hold on;
-
-plot([min(expected_output) max(expected_output)], [min(expected_output) max(expected_output)], 'r--', 'LineWidth', 2);
-
-hold off;
-
-xlabel('Wartość oczekiwana');
-
-ylabel('Predykcja');
-
-title('Scatter plot: Predykcja vs Oczekiwana');
-
-grid on;
-
-axis equal;
-
-
-subplot(2,2,4);
-
-plot(errors, 'LineWidth', 1.5);
-
-xlabel('Numer próbki');
-
-ylabel('Błąd');
-
-title('Błędy predykcji w kolejności próbek');
-
-grid on;
-
-yline(0, 'r--', 'LineWidth', 1.5);
-
-
-disp(' ');
-
-disp('===================================');
-
-disp('GOTOWE!');
-
-disp('===================================');
+disp('Wszystkie wykresy gotowe do analizy!');
