@@ -33,7 +33,7 @@ Range=[0.304792 2]
 NumMFs=3
 MF1='Minimalne':'gaussmf',[0.252177645311563 0.24863198108779]
 MF2='Standardowe':'gaussmf',[0.414648825043191 1.10244639693639]
-MF3='Wzmocnione':'gaussmf',[0.500810921803097 1.84041456597974]
+MF3='Mocne':'gaussmf',[0.500810921803097 1.84041456597974]
 
 [Input4]
 Name='Kwas_Cytrynowy'
