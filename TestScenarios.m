@@ -73,7 +73,19 @@ for i = 1:length(scenarios)
     
     % Prosta interpretacja
 
-    fprintf('Interpretacja: Jakość wina = %.2f/10\n', wynik);
+    if wynik >= 6.5
+    
+        fprintf('Interpretacja: Jakość wina = Wysoka\n');
+        
+    elseif wynik >= 5.0
+    
+        fprintf('Interpretacja: Jakość wina = Średnia\n');
+        
+    else
+    
+        fprintf('Interpretacja: Jakość wina = Niska\n');
+        
+    end
     
     
     fprintf('Oczekiwane: %s\n', scenario.expected);
